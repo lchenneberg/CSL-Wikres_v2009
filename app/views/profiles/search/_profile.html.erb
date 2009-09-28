@@ -1,0 +1,17 @@
+<%= on_title "Search Profiles" %>
+<p>Find by username or email: </p>
+<form name="searchform">
+  <%= text_field_tag 'query', params['query'], :size => 25 %>
+  <%= image_tag 'spinner.gif', :align => "absmiddle", :border => 0,
+        :id => 'spinner', :style => "display:none;" %>
+
+  <%= observe_field 'query', :frequency => 2, :update => 'table',
+        :before => "Element.show('spinner')", :success => "Element.hide('spinner')",
+        :url => {:action => :live_search}, :with => 'query' %>
+
+  <div id="table">
+    <%= render :partial => "profiles/search/users_list" %>
+  </div>
+
+</form>
+

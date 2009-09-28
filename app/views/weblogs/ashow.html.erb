@@ -1,0 +1,22 @@
+<% unless @weblog.nil?  %>
+  <%= on_title "#{@weblog.user.username} Weblog" %>
+<div>
+  <h4>Description :</h4>
+  <p></p>
+</div>
+<table>
+  <tr>
+    <th>Description</th>
+    <th>User</th>
+  </tr>
+
+<% for posts in @weblog.posts %>
+  <tr>
+    <td><%=h posts.description %></td>
+    <td><%=h posts.user %></td>
+  </tr>
+<% end %>
+</table>
+<% else %>
+  <p>Weblog hasn't been actived on this account.</p>
+<% end %>

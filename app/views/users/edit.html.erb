@@ -1,0 +1,23 @@
+<%= on_title t('account.edit_account') %>
+
+<p><%= link_to t('account.show_my_account'), user_path(@user) %></p>
+<%= error_messages_for :user %><br/>
+<% form_for :user, :url => user_url(@user), :html => {:method => :put} do |f| -%>
+  <p><%= t('views.user.email') %> :<br/><%= f.text_field :email %></p>
+  <p><%= t('views.user.mobile') %> :<br/><%= f.text_field :mobile %></p>
+  <p><%= t('views.user.passwd') %> :<br/><%= f.password_field :password %></p>
+  <p><%= t('views.user.passwd_conf') %> :<br/><%= f.password_field :password_confirmation  %></p>
+  <p><%= t('views.user.profile') %> :<br/><%= f.text_area :profile, :rows => 6 %></p><br/>
+  
+  <h3><%= t('friendly.others') %></h3><br/>
+
+  <p><%= t('views.user.gender') %> : <b><%=h @user.gender %></b></p><br/>
+  <p><%= t('views.user.lastname') %> : <b><%=h @user.lastname %></b></p><br/>
+  <p><%= t('views.user.firstname') %> : <b><%=h @user.firstname %></b></p><br/>
+  <p><%= t('views.user.birthdate') %> : <b><%=h @user.birthdate %></b></p><br/>
+  <p><%= t('views.user.member_since') %> : <%= @user.created_at.to_s(:long) %></p>
+  <%= submit_tag t('friendly.update') %>
+
+  <p>Skills</p>
+
+<% end -%>

@@ -1,0 +1,27 @@
+<% unless @weblog.nil?  %>
+  <%= on_title "#{@weblog.user.username} Weblog" %>
+
+<div style="padding:4px;">
+  <%= link_to "Manage posts", account_weblog_posts_path(@weblog.id) %> |
+  <%= link_to "New post",new_account_weblog_post_path(@weblog.id) %>
+  
+</div>
+<div style="border:1px solid #CCC; background:#EEEFFF; padding: 4px;">
+  <p><b>Description : </b> <%= @weblog.description.nil? ? "No description" : @weblog.description %></p>
+</div>
+
+
+<% for post in @posts %>
+<div style="border:1px solid #CCC; margin-top:10px; padding:6px">
+  <span style="color:#666"><%= link_to post.title, account_weblog_post_path(@weblog.id, post) %> -
+    <small><%=h post.created_at %></small>
+  </span><br/><br/>
+  <span style="margin-top: 15px;"><%=h post.summary %></span>
+</div>
+<% end %>
+
+
+
+<% else %>
+  <p>Weblog hasn't been actived on this account.</p>
+<% end %>

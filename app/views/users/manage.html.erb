@@ -1,0 +1,23 @@
+<%= on_title "Manage Account" %>
+<table id="table-style-a">
+  <thead>
+    <tr>
+      <td>Functionnalities</td>
+      <td>Active</td>
+      <td>Actions</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= link_to_if @weblog_exists, "Weblog", user_weblogs_url(@user.id) %></td>
+      <td><%= @weblog_exists %></td>
+      <td>
+        <% unless @weblog_exists %>
+          <%= link_to "Active", enable_user_weblog_url(params[:id]), :method => :put, :confirm => 'Are you sure?' %>
+        <% else %>
+          <%= link_to "Destroy", {:action => "destroy",:controller => "weblogs", :id => @user.weblog.id}, :method => :delete, :confirm => 'Are you sure?' %>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>

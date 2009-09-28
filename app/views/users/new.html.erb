@@ -1,0 +1,20 @@
+<%= on_title  t('auth.register') %>
+
+<p><%= error_messages_for :user %><p>
+
+<% form_for :user, :url => users_path do |f| -%>
+  <p><%= t('views.user.username') %> :<br/><%= f.text_field :username %></p>
+  <p><%= t('views.user.email') %> :<br/><%= f.text_field :email %></p>
+  <p><%= t('views.user.passwd') %> :<br/><%= f.password_field :password %></p>
+  <p><%= t('views.user.passwd_conf') %> :<br/><%= f.password_field :password_confirmation %></p>
+  <p><%= t('views.user.profile') %> :<br/><%= f.text_area :profile, :rows => 6 %></p>
+
+  <p><%= t('views.user.gender') %> :<br/><%= f.select :gender, {'Man' => 1, 'Woman' => 0}  %></p>
+  <p><%= t('views.user.lastname') %> :<br/><%= f.text_field :lastname %></p>
+  <p><%= t('views.user.firstname') %> :<br/><%= f.text_field :firstname %></p>
+  <p><%= t('views.user.birthdate') %> :<br/><%= f.date_select(:birthdate, :use_month_numbers => true,
+    :order => [:day, :month, :year], :start_year => 1900, :end_year => Time.now.year) %></p>
+  <p><%= t('views.user.mobile') %> :<br/><%= f.text_field :mobile %></p>
+
+  <%= submit_tag t('auth.register') %>
+<% end -%>

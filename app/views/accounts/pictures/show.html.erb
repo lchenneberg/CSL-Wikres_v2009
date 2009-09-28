@@ -1,0 +1,12 @@
+<%= on_title @picture.display_name %>
+
+<p align="center"><%= image_tag @picture.public_filename %></p>
+
+<p style="padding:4px; border:1px solid #EEE; background: #EEEFFF; margin: 10px;">
+  <b>Description:</b>
+  <%=h @picture.description.empty? ? "none" :@picture.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_account_picture_path(@picture) %> |
+<%= link_to 'Back', account_pictures_path %>

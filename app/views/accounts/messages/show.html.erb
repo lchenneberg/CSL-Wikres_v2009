@@ -1,0 +1,32 @@
+<p><b>Recipients :</b>
+  <% if @message.recipients.count > 0 %>
+    <% for recipient in @message.recipients %>
+      <%= "#{recipient.user.fullname}; " %>
+    <% end %>
+  <% else %>
+  
+  <% end %>
+</p>
+<p>
+  <b>Subject:</b>
+  <%=h @message.subject %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%=h @message.body %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%=h @message.status %>
+</p>
+
+<p>
+  <b>Hidden at:</b>
+  <%=h @message.hidden_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_account_message_path(@message) if logged_in_user.id == @message.user_id && @message == "sent" %> |
+<%= link_to 'Back', account_messages_path %>

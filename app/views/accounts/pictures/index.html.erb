@@ -1,0 +1,27 @@
+<%= on_title "My pictures"  %>
+
+<table class="table-style-a">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Thumb</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+<% @pictures.each do |picture| %>
+  <tr>
+    <td><%=h picture.display_name %></td>
+    <td><%= image_tag picture.public_filename(:large)  %></td>
+    <td><%= link_to 'Show', account_picture_path(picture) %> |
+        <%= link_to 'Edit', edit_account_picture_path(picture) %> |
+        <%= link_to 'Destroy', account_picture_path(picture), :confirm => 'Are you sure?', :method => :delete %> | 
+        <%= link_to 'Use as Avatar', set_avatar_account_path(:pict => picture) ,:confirm => "Are you sure?", :method => :put %></td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New picture', new_account_picture_path %>

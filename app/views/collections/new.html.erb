@@ -1,0 +1,24 @@
+<%= on_title "New collection" %>
+
+
+<% form_for @collection do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :sgltype, "Single mode :" %>
+    <%= select :collection, :sgltype, Collection.sgltypes, :include_blank => true %>
+  </p>
+  <p>
+    <%= f.label :name %> :<br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %> :<br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %> | 
+    <%= link_to 'Back', account_collections_path %>
+  </p>
+<% end %>
+

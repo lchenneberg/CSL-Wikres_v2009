@@ -1,0 +1,28 @@
+<p>
+  <b>Subject:</b>
+  <%=h @message.subject %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%=h @message.body %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%=h @message.state %>
+</p>
+
+<p>
+  <b>Hidden at:</b>
+  <%=h @message.hidden_at %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%=h @message.type %>
+</p>
+
+
+<%= link_to 'Edit', edit_message_path(@message) %> |
+<%= link_to 'Back', messages_path %>

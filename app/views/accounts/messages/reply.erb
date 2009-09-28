@@ -1,0 +1,24 @@
+<%= on_title 'New message' %>
+<% form_for @message, :url => reply_action_account_message_url do |f| %>
+
+<div style="position:relative; float:right; width:400px;
+  height:400px;background-color:#ffffff;overflow:auto;">
+  <p><b>Receiver : <%= @original_message.user.username %> </b></p>
+</div>
+
+  <%= f.error_messages %>
+<p><b>Send Method :</b> <%=  select_tag "sendmethod", "<option selected='selected'>Instant</option><option>Deferred</option>" %></p>
+  <p>
+    <%= f.label :subject %><br />
+    <b><%= @original_message.subject %></b>
+  </p><br/>
+  <p>
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </p>
+
+  <p>
+    <%= f.submit 'Create' %> | <%= link_to 'Back', account_messages_path %>
+  </p>
+<% end %>
+

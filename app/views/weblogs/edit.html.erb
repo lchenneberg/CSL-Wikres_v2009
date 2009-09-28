@@ -1,0 +1,26 @@
+<%= on_title "Editing weblog" %>
+
+<% form_for @weblog, :url => account_weblog_url(@weblog.id) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :public %> :
+    <%= f.check_box :public %>
+  </p><br/>
+  <p>
+    <%= f.label :name %> :<br />
+    <%= f.text_field :name %>
+  </p><br/>
+  <p>
+    <%= f.label :description %> :<br />
+    <%= f.text_area :description %>
+  </p><br/>
+  
+  
+  <p>
+    <%= f.submit 'Update' %> | 
+    <%= link_to 'Show', account_weblog_path(@weblog) %> |
+    <%= link_to 'Back', account_weblogs_path %>
+  </p>
+<% end %>
+

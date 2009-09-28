@@ -1,0 +1,1 @@
+<%= collection_select(@message.recipients, :recipient_id, User.all, :id, :fullname, {}, {:multiple => true}) %>

@@ -1,0 +1,24 @@
+<p>
+  <%= link_to("New #{params[:model]}", :action => 'new', :model => params[:model] )%> |
+  <%= link_to("Edit", :action => 'edit', :model => params[:model], :id => params[:id]) %> |
+  <%= link_to("Back", :action => 'list', :model => params[:model]) %> | 
+  <%= link_to("Admin", admin_url )%> |
+</p>
+<table id="table-style-b">
+  <thead>
+  <tr>
+    <th>Column</th>
+    <th>Type</th>
+    <th>Value</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% for column in eval("#{params[:model]}.content_columns") %>
+  <tr class="<%= cycle('odd', 'even') %>">
+    <td><%= column.human_name %></td>
+    <td><%= column.type.to_s.capitalize %>
+    <td><%= instance_variable_get("@entry").send(column.name) %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>

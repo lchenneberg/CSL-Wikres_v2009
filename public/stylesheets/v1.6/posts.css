@@ -1,0 +1,12 @@
+#container .info {margin:10px 0; padding-bottom:8px; border-bottom:1px solid #DEE5FD; color:#6685CC;}
+#container .info a {color:#6685CC;}
+#container .info a:hover {color:#FF9000;}
+#container .info span.date, #container .info span.cat, #container .info span.user, #container .info span.bid, #container .info span.comments {padding-left:15px;}
+#container .info span.date {background:url("/images/v1.6/icons/ico_date.gif") 0 50% no-repeat;}
+#container .info span.cat {background:url("/images/v1.6/icons/ico_cat.gif") 0 50% no-repeat; margin-left:8px;}
+#container .info span.user {background:url("/images/v1.6/icons/ico_user.gif") 0 50% no-repeat; margin-left:8px;}
+#container .info span.comments {background:url("/images/v1.6/icons/ico_comments.gif") 0 50% no-repeat; margin-left:8px;}
+#container .info span.bid {background:url("/images/v1.6/icons/ico_bid.gif") 0 50% no-repeat; margin-left:8px;}
+
+ul.comments{list-style-type:none; padding:5px; margin-top:5px;}
+.comments li{margin-bottom:5px;padding-left:20px;background:url('/images/v1.6/icons/ico_comments.gif') no-repeat;}

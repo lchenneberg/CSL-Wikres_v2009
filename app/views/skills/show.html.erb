@@ -1,0 +1,18 @@
+<p>
+  <b>Name:</b>
+  <%=h @skills.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @skills.description %>
+</p>
+
+<p>
+  <b>Parent:</b>
+  <%=h @skills.parent_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_skills_path(@skills) %> |
+<%= link_to 'Back', skills_path %>

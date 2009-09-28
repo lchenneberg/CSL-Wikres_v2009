@@ -1,0 +1,20 @@
+<%= on_title t('auth.sn_retrieve') %>
+
+<% form_tag :action => 'retrieve_action' do %>
+  <table style="border:1px solid #AAA; padding:5px; background-color:#EEE">
+    <tr>
+      <td style="width:160px">Login :</td>
+      <td>Email :</td>
+    </tr>
+    <tr>
+      <td><%= text_field_tag :login, params[:login] %></td>
+      <td><%= text_field_tag :email, params[:email] %></td>
+    </tr>
+    <tr>
+      <th colspan="2">
+        <p style="margin-top:6px"><%= submit_tag t('auth.retrieve_passwd') %> | <%= link_to t('friendly.home_page'), index_url %></p>
+      </th>
+    </tr>
+  </table>
+  <br/>
+<% end %>

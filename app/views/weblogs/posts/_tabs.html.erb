@@ -1,0 +1,8 @@
+<li><%= tab_yield "Account", account_url %></li>
+<li><%= tab_yield "Weblogs", account_weblogs_url %></li>
+<li><%= tab_yield "Posts", account_weblog_posts_url(params[:weblog_id]) %></li>
+<li><%= tab_yield "New Post", new_account_weblog_post_url(params[:weblog_id]) %></li>
+<% if controller.action_name == "show" %>
+  <li><%= tab_yield 'Edit Post', edit_account_weblog_post_path(@post.weblog_id,@post) %></li>
+  <li><%= tab_yield "Comments", account_weblog_post_comments_path(params[:weblog_id], params[:id]) %></li>
+<% end %>

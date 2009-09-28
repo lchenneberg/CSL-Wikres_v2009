@@ -1,0 +1,26 @@
+<%= on_title "Sent box - #{@sent.count}" %>
+<% if @sent.count > 0 %>
+<table class="table-style-a">
+  <thead>
+  <tr>
+    <th>Subject</th>
+    <th>Status</th>
+    <th>Sent at</th>
+    <th>Type</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @sent.each do |message| %>
+  <tr>
+    <td><%= link_to message.subject, account_message_path(message) %></td>
+    <td><%=h message.status %></td>
+    <td><%=h message.sent_at.to_s(:long) %></td>
+    <td><%=h message.type %></td>
+    <td><%= link_to 'Show', account_message_path(message) %> |
+        <%= link_to 'Destroy', account_message_path(message), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+<% end %>

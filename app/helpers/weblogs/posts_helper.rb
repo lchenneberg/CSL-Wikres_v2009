@@ -1,0 +1,2 @@
+module Weblogs::PostsHelper
+end

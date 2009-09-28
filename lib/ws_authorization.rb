@@ -1,0 +1,3 @@
+module WsAuthorization
+
+end

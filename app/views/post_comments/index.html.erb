@@ -1,0 +1,32 @@
+<%= on_title("Comments") %>
+
+<div id="comments">
+  <% for comment in @comments %>
+    <div class="comment" style="margin-bottom:10px; position:relative; border:1px solid #CCC; padding:5px">
+      <div style="position:absolute; right:2px; top:1px;">
+        <%= link_to "X", account_weblog_post_comment_path(params[:weblog_id], params[:post_id], comment), :method => :delete %>
+      </div>
+      <p>
+        <b><%= h comment.title %></b><br/>
+        <small>written by <%=h comment.user.nil? ? "???" : comment.user.username %> on <%= comment.created_at %></small>
+      </p>
+      <p><%= simple_format(comment.content) %></p>
+    </div>
+  <% end %>
+
+</div>
+
+<div id="new_comment">
+<%= on_title("New comment") %>
+<% remote_form_for [@commentable, Comment.new], :url => account_weblog_post_comments_path(params[:weblog_id], params[:post_id]) do |f| %>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :content %><br/>
+    <%= f.text_area :content %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>
+</div>

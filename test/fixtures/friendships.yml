@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 
+  friend_id: 1
+  status: MyString
+  accepted_at: 2009-05-07 18:40:38
+
+two:
+  user_id: 
+  friend_id: 1
+  status: MyString
+  accepted_at: 2009-05-07 18:40:38

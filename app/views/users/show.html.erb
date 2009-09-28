@@ -1,0 +1,23 @@
+<%= on_title t('friendly.your_profile') %>
+
+<p><%= t('views.user.username') %> : <%= @user.username %></p>
+<p><%= t('views.user.email') %> : <%= @user.email %> </p>
+<p><%= t('views.user.member_since') %> : <%= @user.created_at.to_s(:long) %></p>
+<p><%= t('views.user.profile') %> : <%= @user.profile %></p>
+<br/><br/>
+
+<p class="minimizable"><%= link_to_remote "Posts", :url => { :action => 'do_toggle'} %></p>
+<div class="minimizable">
+  <% for post in @posts %>
+    <table cellspacing="10" border="0" >
+      <tr>
+        <th>Title</th>
+        <th>Published at</th>
+      </tr>
+      <tr>
+        <td><%= post.title %></td>
+        <td><%= post.published_at %></td>
+      </tr>
+    </table>
+  <% end %>
+</div>

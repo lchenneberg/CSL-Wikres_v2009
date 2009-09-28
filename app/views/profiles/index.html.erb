@@ -1,0 +1,15 @@
+<%= stylesheet_link_tag "v1.6/styles"  %>
+
+<%= render :partial => "profiles/search/profile" %>
+
+<br/><br/>
+<div id="disCols">
+  <div class="col-style-a">
+    <h3>Latest members</h3>
+    <ul>
+      <% for member in @latest_members %>
+        <li><%= link_to member.fullname, profile_url(member.username) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div><div style="clear:both"></div>

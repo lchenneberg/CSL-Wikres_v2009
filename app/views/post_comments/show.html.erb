@@ -1,0 +1,13 @@
+<p>
+  <b>title :</b>
+  <%= @comment.title %>
+</p>
+<p>
+  <b>Content:</b><br/>
+  <%=h @comment.content %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_account_weblog_post_comment_path(params[:weblog_id], params[:post_id], @comment) %> |
+<%= link_to 'Back', account_weblog_post_comments_path(params[:weblog_id], params[:post_id]) %>

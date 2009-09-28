@@ -1,0 +1,13 @@
+<p>
+  <b>Name:</b>
+  <%=h @collection.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @collection.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_account_collection_path(@collection) %> |
+<%= link_to 'Back', account_collections_path %>

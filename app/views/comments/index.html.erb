@@ -1,0 +1,26 @@
+<%= on_title("Comments") %>
+
+<div id="comments">
+  <% for comment in @comments %>
+    <div class="comment">
+      <p><small>written by <%=h comment.user.username %> on <%= comment.created_at %></small></p>
+      <p><%= simple_format(comment.content) %></p>
+    </div>
+  <% end %>
+
+</div>
+
+<div>
+<%= on_title("New comment") %>
+<% form_for [@commentable, Comment.new] do |f| %>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :content %><br/>
+    <%= f.text_area :content %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>
+</div>

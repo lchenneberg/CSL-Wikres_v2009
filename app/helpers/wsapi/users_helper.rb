@@ -1,0 +1,2 @@
+module Wsapi::UsersHelper
+end

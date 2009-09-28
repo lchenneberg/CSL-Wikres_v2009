@@ -1,0 +1,59 @@
+<% form_for :user, @user, :url => profile_update_account_url, :html => {:method => :put} do |f| %>
+    <%= f.error_messages %>
+
+<%= on_title "Static Informations" %>
+<div class="hideable">
+  <table class="table-style-a">
+    <tbody>
+    <tr>
+      <td>Fullname :</td>
+      <td><%= "#{@user.gender == 1 ? "Mr" : "Mrs" unless @user.gender.nil?} #{@user.lastname.upcase} #{@user.firstname.capitalize}" %></td>
+    </tr>
+    <tr>
+      <td>Birthdate :</td><td><%= @user.birthdate.to_s(:long) %></td>
+    </tr>
+    <tr>
+      <td>Member Since:</td><td><%= @user.created_at.to_s(:long) %></td>
+    </tr>
+    <tr>
+      <td>Laste Update:</td><td><%= @user.updated_at.to_s(:long) %></td>
+    </tr>
+    </tbody>
+  </table>
+</div><br/>
+
+<%= on_title "Personal Informations" %>
+<div class="hideable">
+  <table class="table-style-a">
+  <tbody>
+    <tr>
+      <td><%= f.label :profile %> :</td>
+      <td><%= f.text_area :profile, :rows => 8 %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :mobile %> :</td>
+      <td><%= f.text_field :mobile %></td>
+    </tr>
+  </tbody>
+  </table>
+</div>
+
+<%= on_title "Skills" %>
+<% counter=0 %>
+<div class="hideable">
+  <table class="table-style-a">
+    <% for skill in @skills %>
+    <%= "<tr>" if counter==0 %>
+      <td>
+        <%= check_box_tag "skill_ids[]", skill.id, @user.skills.include?(skill) %>
+        <%= skill.name %>
+      </td>
+      <td><%= skill.description %></td>
+      <%  counter+=1
+          counter=0 if counter==4
+          "<tr>" if counter==0 %>
+    <% end %>
+  </table><br/>
+</div>
+  <%= submit_tag "Update"  %>
+<% end %>

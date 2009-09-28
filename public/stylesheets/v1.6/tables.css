@@ -1,0 +1,118 @@
+/* Tablestyle A */
+#table-style-a{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 10px 0px 10px 0px;
+	width: 100%;
+	text-align: left;
+	border-collapse: collapse;
+}
+#table-style-a th{
+	padding: 6px 12px 6px 12px;
+	font-weight: normal;
+	font-size: 14px;
+	color: #039;
+	border-bottom: 1px dashed #69c;
+}
+#table-style-a td{
+	padding: 4px 12px 4px 12px;
+	color: #669;
+}
+#table-style-a tbody{
+    border-top: 1px solid #69c;
+	/*border-bottom: 1px solid #69c;*/
+}
+#table-style-a tbody tr:hover td{
+	color: #339;
+	background: #E8EFF7;
+}
+
+#table-style-a td{
+	color: #669;
+	border-bottom: 1px solid #ccc;
+}
+
+/* Tablestyle B */
+#table-style-b{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 10px 0px 10px 0px;
+	width: 100%;
+	text-align: left;
+	border-collapse: collapse;
+	
+}
+#table-style-b th{
+	padding: 8px 10px;
+	font-weight: normal;
+	font-size: 14px;
+	color: #039;
+}
+#table-style-b tbody{
+	background: #e8edff;
+    border-top: 1px solid #69c;
+    border-bottom: 1px solid #69c;
+}
+#table-style-b td{
+	padding: 4px 6px;
+	color: #669;
+	border-top: 1px dashed #fff;
+}
+#table-style-b tbody tr.even td{
+	color: #339;
+	background: #FFF;
+}
+#table-style-b tbody tr.odd td{
+	color: #339;
+	background: #e8edff;
+}
+#table-style-b tbody tr:hover td{
+	color: #339;
+	background: #d0dafd;
+}
+
+/* Classes */
+.table-style-a{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 0px 0px 10px 0px;
+	width: 100%;
+	text-align: left;
+	border-collapse: collapse;
+}
+.table-style-a th{
+	padding: 0px 14px 8px 14px;
+	font-weight: normal;
+	font-size: 14px;
+	color: #888;
+	border-bottom: 1px dashed #69c;
+}
+.table-style-a td{
+	padding: 7px 14px 7px 14px;
+	color: #669;
+}
+.table-style-a td#spec {
+	padding: 5px 14px 5px 14px;
+    background: #EEE;
+	color: #669;
+}
+.table-style-a td.spec {
+	padding: 5px 14px 5px 14px;
+    background: #EEE;
+	color: #669;
+}
+.table-style-a tbody{
+    border-top: 1px solid #69c;
+	/*border-bottom: 1px solid #69c;*/
+}
+.table-style-a tbody tr:hover td{
+	color: #339;
+	background: #E8EFF7;
+}
+
+.table-style-a td{
+	color: #669;
+	border-bottom: 1px solid #ccc;
+}
+
+

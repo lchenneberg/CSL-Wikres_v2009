@@ -1,0 +1,14 @@
+<h3 style="color:#666"><%= @post.title %></h3>
+<span style="font-size:9px; color:#888">by <%= @post.user.username %> on <%= @post.published_at %></span><br/><br/>
+
+<p style="border:1px solid #AAA; padding:4px; background:#EEEFFF; color:#666" >
+  <%=h @post.summary %>
+</p><br/>
+
+<p><%=h @post.content %></p><br/>
+
+<p><b>Keywords :</b> <%=h @post.keywords.empty? ? "none" : @post.keywords %></p><br/>
+
+<%= render :partial => "posts/comment/show", :locals => { :comments => @post.comments } %>
+
+<%= link_to 'Back', profile_posts_url(params[:user_id]) %>

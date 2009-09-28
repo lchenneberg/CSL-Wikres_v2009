@@ -1,0 +1,36 @@
+<%= link_to 'New message', new_account_message_path %><br/><br/>
+
+<%= on_title "Inbox - #{@inbox.count}" %>
+<% if @inbox.count > 0 %>
+<table class="table-style-a">
+  <thead>
+  <tr>
+    <th>Subject</th>
+    <th></th>
+    <th>From</th>
+    <th>Read?</th>
+    <th>Received at</th>
+    <th>Type</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+<% for message in @inbox %>
+  <tr>
+    <td><%= link_to message.subject, account_message_path(message) %></td>
+    <td><%= avatar_for(message.user) %></td>
+    <td><%= link_to message.user.fullname, profile_url(message.user)  %></td>
+    <td><%= check_box_tag "read", "", message.read?(logged_in_user) ,:disabled => true %></td>
+    <td><%=h message.sent_at.to_s(:long) %></td>
+    <td><%=h message.type %></td>
+    <td><%= link_to 'Read', account_message_path(message) %> |
+        <%= link_to 'Reply', reply_account_message_path(message.id) %> |
+        <%= link_to 'Remove', account_message_path(message), :confirm => 'Are you sure?', :method => :delete %></td> 
+  </tr>
+<% end %>
+  </tbody>
+</table><br/>
+<% end %>
+
+
+

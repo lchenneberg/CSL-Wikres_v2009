@@ -1,0 +1,7 @@
+<h3>Hello <%= @friend.firstname %></h3>
+
+<p>You've a new friend request from "<%= @user.lastname %> <%= @user.firstname %>"<br/>
+
+<%= link_to "Accept", @accept_url %> | <%= link_to "Decline", @decline_url %><br/><br/>
+
+Generated at : <%= Time.now %></p>

@@ -1,0 +1,19 @@
+<h3>Wikres Admin Panel</h3>
+
+<table id="table-style-a">
+  <thead>
+  <tr>
+    <th>Model</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+<% for model in @models %>
+  <tr>
+    <td> <%= model.underscore.humanize.pluralize %></td>
+    <td><%= link_to "Manage", :action => "list", :model => model %></td>
+  </tr>
+<% end %>
+  </tbody>
+
+</table>

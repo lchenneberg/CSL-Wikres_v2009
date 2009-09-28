@@ -1,0 +1,76 @@
+<table class="table-style-a">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Fullname</th>
+      <th>Username</th>
+      <th>Related friends</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+  <% unless @user.requested_friends.empty? or logged_in_user.id != @user.id %>
+    <tr>
+      <td colspan="5" class="spec">Requests ( <%= @user.requested_friends.count %> )</td>
+    </tr>
+
+    <% @user.requested_friends.each do |requester| %>
+      <tr>
+        <td><%= avatar_for requester %></td>
+        <td><%= link_to requester.fullname, profile_path(requester) %></td>
+        <td><%= link_to requester.username.capitalize, profile_path(requester) %></td>
+        <td><%= logged_in_user.related_friends_count(requester) %></td>
+        <td>
+          <%= link_to "Accept", :controller => :friendships, :action => :accept,
+              :id => requester.username %> |
+          <%= link_to "Decline", { :controller => :friendships, :action => :decline,
+              :id => requester.username }, :confirm => "Are you sure?" %>
+        </td>
+      </tr>
+    <% end %>
+
+  <% end %>
+
+
+  <tr>
+    <td colspan="5" class="spec">Friends ( <%= @user.friends.count %> )</td>
+  </tr>
+  <% @user.friends.each do |friend| %>
+    <tr>
+      <td width="50"><%= avatar_for friend %></td>
+      <td><%= link_to friend.fullname, profile_path(friend) %></td>
+      <td><%= link_to friend.username.capitalize, profile_path(friend) %></td>
+      <td><%= logged_in_user.related_friends_count(friend) %></td>
+      <td>
+        <% if logged_in_user.id == @user.id %>
+            <%= link_to "Break", {:controller => :friendships, :action => :delete, :id => friend.username},
+                :confirm => "Are you sure?" %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+
+
+  <% unless @user.pending_friends.empty? or logged_in_user.id != @user.id %>
+
+    <tr>
+      <td colspan="5" class="spec">Pending friends ( <%= @user.pending_friends.count %> )</td>
+    </tr>
+
+    <% @user.pending_friends.each do |pending_friend| %>
+      <tr>
+        <td><%= avatar_for pending_friend %></td>
+        <td><%= link_to pending_friend.fullname, profile_path(pending_friend) %></td>
+        <td><%= link_to pending_friend.username.capitalize, profile_path(pending_friend) %></td>
+        <td><%= logged_in_user.related_friends_count(pending_friend) %></td>
+        <td>
+          <%= link_to "Cancel request", { :controller => :friendships, :action => :cancel,
+                :id => pending_friend.username } , :confirm => "Are you sure?" %>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
+  <tbody>
+</table>

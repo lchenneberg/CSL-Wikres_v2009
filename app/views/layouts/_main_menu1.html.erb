@@ -1,0 +1,28 @@
+
+
+    <li><%= link_to 'Général', index_url  %></li>
+
+    <!-- Visible si connecté + admin -->
+    <% if logged_in_user and logged_in_user.has_role?('administrator') %>
+    <li><%= link_to 'AdminPanel', admin_url %><ul>
+        <li><%= link_to 'Admin Users', users_path %></li>
+        <li><%= link_to 'Admin Blog', admin_articles_path %></li>
+        <li><%= link_to 'Admin Projects', admin_projects_path %></li>
+	</ul></li>
+    <% end %>
+
+	<!-- Visible si connecté -->
+    <% if is_logged_in? %>
+    <li><a href="#">Membres</a><ul>
+      <li><%= link_to 'Mettre à jour mes infos', edit_user_path(logged_in_user) %></li>
+    </ul></li>
+    <% end %>
+
+    <li><%= link_to 'Blog', articles_path %></li>
+    <li><%= link_to 'Projects', :controller => "projects", :action => "index" %><ul>
+    <li><%= link_to 'Projects', :controller => "projects", :action => "index" %></li>
+	</ul></li>
+
+
+
+

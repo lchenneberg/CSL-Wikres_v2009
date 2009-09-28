@@ -1,0 +1,37 @@
+<p>
+  <%= link_to("New #{params[:model]}", :action => 'new', :model => params[:model] )%> |
+  <%= link_to("Admin", admin_url )%>
+</p>
+<table id="table-style-b">
+  <thead>
+  <% unless @entries.empty?  %>
+  <tr>
+    <% for name in @entries[0].list_extra_cols_names %>
+    <th><%= name %></th>
+    <% end %>
+    <th>Actions</th>
+  </tr>
+  <% end %>
+  </thead>
+  <tbody>
+  <% for entry in @entries %>
+  <tr class="<%= cycle('odd', 'even') %>">
+    <% for column in entry.list_extra_cols %>
+      <td><%= entry.send(column) %></td>
+    <% end %>
+    <td>
+      <%= link_to("Show", :action => 'show', :model => params[:model], :id => entry.id) %> |
+      <%= link_to("Edit", :action => 'edit', :model => params[:model], :id => entry.id) %> |
+      <%= link_to("Delete", {:action => 'destroy', :model => params[:model], :id => entry.id}, :confirm => "Are you sure?" ) %>
+    </td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<div class="paginate">
+  <%= will_paginate @entries, :container => false %>
+  <div class="paginate_info">
+    <%= page_entries_info @entries %>
+  </div>
+</div>

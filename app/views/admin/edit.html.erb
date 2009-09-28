@@ -1,0 +1,26 @@
+<h3>Edit <%= params[:model]  %></h3><br/>
+<% form_for :entry, @entry, :url => {:action => "update", :model => params[:model], :id => params[:id]} do |f| %>
+  <%= f.error_messages %>
+  <table id="table-style-a">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for field in @fields %>
+    <tr>
+      <td><%= f.label field[0], field[0].humanize.capitalize + " :" %></td>
+      <td><%= f.send(field[1], field[0]) %></td>
+    </tr>
+    <% end %>
+    <tr>
+      <td colspan="2"><%= f.submit "Update" %></td>
+    </tr>
+  </tbody>
+  </table>
+<% end unless @fields.nil? %><br/>
+
+<%= link_to("Admin", admin_url )%> |
+<%= link_to("Back", :controller => 'admin', :action => "list", :model => params[:model]) %><p>

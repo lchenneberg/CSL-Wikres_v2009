@@ -1,0 +1,20 @@
+<h1>Editing message</h1>
+
+<% form_for @message, :url => account_message_url(@message)  do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :subject %><br />
+    <%= f.text_field :subject %>
+  </p>
+  <p>
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %> |
+    <%= link_to 'Show', account_message_path(@message) %> |
+    <%= link_to 'Back', account_messages_path %>
+  </p>
+<% end %>
+

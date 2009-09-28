@@ -1,0 +1,4 @@
+# TODO Operate on the page object
+page.insert_html :bottom, :comments, :partial => @comment
+page[@comment].visual_effect :highlight
+page[:new_comment].reset

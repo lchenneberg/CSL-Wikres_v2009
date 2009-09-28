@@ -1,0 +1,28 @@
+<%= on_title "My Weblogs" %>
+
+<%= link_to 'New Weblog', new_account_weblog_path %><br />
+<table id="table-style-a">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Posts</th>
+    <th>Last update</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+<% @weblogs.each do |weblog| %>
+  <tr>
+    <td><%= link_to weblog.name, account_weblog_path(weblog) %></td>
+    <td><%= link_to weblog.posts.count, account_weblog_posts_path(weblog) %></td>
+    <td><%=h weblog.updated_at %></td>
+    <td><%= link_to 'Show', account_weblog_path(weblog) %> |
+        <%= link_to 'Posts', account_weblog_posts_path(weblog) %> | 
+        <%= link_to 'Edit', edit_account_weblog_path(weblog) %> |
+        <%= link_to 'Destroy', account_weblog_path(weblog), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+
+

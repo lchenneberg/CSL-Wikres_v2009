@@ -1,0 +1,22 @@
+<h1>Listing weblogs</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th>User</th>
+  </tr>
+
+<% @weblogs.each do |weblog| %>
+  <tr>
+    <td><%=h weblog.description %></td>
+    <td><%=h weblog.user %></td>
+    <td><%= link_to 'Show', weblog %></td>
+    <td><%= link_to 'Edit', edit_weblog_path(weblog) %></td>
+    <td><%= link_to 'Destroy', weblog, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New weblog', new_weblog_path %>

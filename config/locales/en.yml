@@ -1,0 +1,94 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  auth :
+    login: "Login"
+    logout: "Logout"
+    register: "Register"
+    retrieve_passwd: "Retrieve password"
+    forgotten_passwd: "Forgotten password"
+    sn_login: "Login"
+    sn_register: "Register"
+    sn_retrieve: "Retrieve my account"
+    flash:
+      deny_access: "You haven't got rights to access this resource."
+      login_required: "You must be logged in to access this resource."
+      login_failed: "Username or password may be wrong."
+      logout_success: "You've been disconnected."
+      bad_association: "Username doesn't match with email."
+      bad_email: "Please fill email field with a correct address."
+      retrieve_mail_failed: "An error raised during send process."
+      retrieve_success: "Your account has been retrieved, an email has been sent to you mailbox."
+
+  account :
+    edit_account: "Edit account"
+    delete_account: "Delete account"
+    show_my_account: "Show my account"
+    flash:
+      create_success: "Account was successfully created and require activation. Please check you mailbox."
+      update_success: "Account was successfully updated"
+      activ_success: "Account was successfully activated"
+      activ_failed: "An error raised during activation process"
+      bad_activ_key: "This activation key is invalid or expired"
+
+      
+  menu:
+    admin:
+      section: "Admin"
+    profiles:
+      section: "Profiles"
+    general:
+      section: "Homepage"
+    account:
+      section: "Account"
+      profile: "Profile Manager"
+      message: "My Messages"
+      update_account: "Update my account"
+      user_weblog: "My weblogs"
+      collections: "Collections"
+  home:
+    welcome: "Welcome to Wikres Labs."
+
+  flash:
+    auth:
+      login:
+        success: "You're now logged in."
+        failed: "Your login or password may be wrong."
+        enabled: ""
+      enable:
+        success: "Your account has been activated! You can login now."
+        failed: "Your activation key doesn't match with this account. Please contact support."
+      register:
+        success: "Your account has been created. An activation mail has been sent to your mailbox."
+        failed: "An error raised during the account creation process."
+  friendly:
+    save: "Save"
+    edit: "Edit"
+    update: "Update"
+    delete: "Delete"
+    others: "Others"
+    last_page: "Last page"
+    next_page: "Next page"
+    home_page: "Homepage"
+    your_account: "Your account"
+    your_profile: "Your profile"
+    other_fields: "Other fields"
+
+  views:
+    user:
+      username: "Username"
+      email: "Email"
+      passwd: "Password"
+      passwd_conf: "Password confirmation"
+      profile: "Profile"
+      lastname: "Lastname"
+      firstname: "Firstname"
+      gender: "Gender"
+      birthdate: "Birthdate"
+      mobile: "Cellular phone number"
+      member_since: "Member since"
+
+
+
+        

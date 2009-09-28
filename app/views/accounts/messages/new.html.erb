@@ -1,0 +1,34 @@
+<%= on_title 'New message' %>
+<% form_for @message, :url => account_messages_url do |f| %>
+
+<div style="position:relative; float:right; width:400px;
+  height:400px;background-color:#ffffff;overflow:auto;">
+  <p><b>Receivers :</b></p>
+  <ul>
+  <% for friend in logged_in_user.friends %>
+    <li><%= check_box_tag "recipient_ids[]", friend.id, @message.recipients.include?(friend.id) %> <%= "#{friend.fullname}" %></li>
+  <% end %>
+  <li><hr style="border: 1px dotted #eee; margin: 10px;" /></li>
+  <% for user in User.all %>
+    <li><%= check_box_tag "recipient_ids[]", user.id, @message.recipients.include?(user.id) %> <%= "#{user.fullname}" %></li>
+  <% end %>
+
+  </ul>
+</div>
+
+  <%= f.error_messages %>
+<p><b>Send Method :</b> <%=  select_tag "sendmethod", "<option selected='selected'>Instant</option><option>Deferred</option>" %></p>
+  <p>
+    <%= f.label :subject %><br />
+    <%= f.text_field :subject %>
+  </p>
+  <p>
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </p>
+
+  <p>
+    <%= f.submit 'Create' %> | <%= link_to 'Back', account_messages_path %>
+  </p>
+<% end %>
+

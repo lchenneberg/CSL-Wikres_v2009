@@ -1,0 +1,12 @@
+<% if logged_in_user.nil? %>
+  <li><%= tab_yield t('auth.register'), new_account_url %></li>
+  <li><%= tab_yield t('auth.login'), login_account_url %></li>
+  <li><%= tab_yield t('auth.retrieve_passwd'), retrieve_account_url %></li>
+<% elsif !logged_in_user.nil? %>
+  <li><%= tab_yield "Activities", account_url %></li>
+  <li><%= tab_yield "Messages", account_messages_url %></li>
+  <li><%= tab_yield "Collections", account_collections_url %></li>
+  <li><%= tab_yield "Weblogs", account_weblogs_url %></li>
+  <li><%= tab_yield "Pictures", account_pictures_url %></li>
+<% end %>
+

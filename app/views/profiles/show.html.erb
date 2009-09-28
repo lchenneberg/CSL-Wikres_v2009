@@ -1,0 +1,104 @@
+<%= stylesheet_link_tag "v1.6/styles"  %>
+<p style="float:right; font-size:9px; margin-bottom:2px"><b>Public URL :</b> <%= link_to profile_url(@user.username.downcase) %></p>
+
+<div style="padding:10px; background:#EEEFFF; border: 1px solid #CCC; clear:both; vertical-align:top;">
+  <p>
+    <span style="text-align:left"><%= avatar_for @user, :large %></span>
+    <% if @user.profile %>
+      <%= @user.profile %>
+    <% else %>
+      No description.
+    <% end %>
+  </p>
+</div>
+
+<br/><br/>
+
+<div id="disCols">
+  <div class='col-style-a'>
+    <h3>Weblogs</h3>
+    <ul>
+    <% for weblog in @weblogs %>
+      <li><%= link_to weblog.name, "#" %></li>
+    <% end %>
+    </ul>
+  </div>
+
+  <div class='col-style-b'>
+    <h3>Latest Posts</h3>
+    <ul>
+    <% for post in @latest_posts %>
+      <li><%= link_to "#{post.title}", profile_post_url(post.user_id,post) %>,
+      <small>(<%= post.updated_at.today? ? post.updated_at.to_time : post.updated_at.to_date %>)</small></li>
+    <% end %>
+    </ul>
+  </div>
+
+  <div class='col-style-c'>
+    <h3>Friends</h3>
+    <ul>
+    <% for friend in @friends %>
+      <li><%= link_to "#{friend.lastname} #{friend.firstname}", profile_path(friend) %></li>
+    <% end %>
+    </ul>
+  </div>
+
+  <% if logged_in_user %>
+  <div class='col-style-d'>
+    <h3>Related friends</h3>
+    <ul>
+    <% for relfriend in @related_friends %>
+      <li>- <%= link_to "#{relfriend.lastname} #{relfriend.firstname}", profiles_path(relfriend) %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+
+</div><div style="clear:both"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

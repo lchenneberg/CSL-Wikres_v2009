@@ -1,0 +1,28 @@
+<%= on_title "Outbox - #{@outbox.count}" %>
+<% if @outbox.count > 0 %>
+<table class="table-style-a">
+  <thead>
+  <tr>
+    <th>Subject</th>
+    <th>Status</th>
+    <th>Created at</th>
+    <th>Type</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @outbox.each do |message| %>
+  <tr>
+    <td><%= link_to message.subject, account_message_path(message) %></td>
+    <td><%=h message.status %></td>
+    <td><%=h message.created_at.to_s(:long) %></td>
+    <td><%=h message.type %></td>
+    <td><%= link_to 'Send', send_message_account_message_path(message), :confirm => 'Are you sure?', :method => :put %> |
+        <%= link_to 'Show', account_message_path(message) %> |
+        <%= link_to 'Edit', edit_account_message_path(message) %> |
+        <%= link_to 'Destroy', account_message_path(message), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+<% end %>

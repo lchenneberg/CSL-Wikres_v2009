@@ -1,0 +1,32 @@
+<%= on_title "My collections" %>
+<div style="padding:4px; border:1px solid #EEE; background:#EEEFFF;">
+  <h3 style="margin-bottom:10px;">Info</h3>
+  <p><b>Type :</b><span>
+    <% for type in Collection.sgltypes %>
+        <%= "#{type.to_s.capitalize}, " %>
+    <% end %>
+  </span></p>
+</div>
+<table id="table-style-a">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Description</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+<% @collections.each do |collection| %>
+  <tr>
+    <td><%=h collection.name %></td>
+    <td><%=h collection.sgltype %></td>
+    <td><%=h collection.description %></td>
+    <td><%= link_to 'Show', account_collection_path(collection) %> |
+    <%= link_to 'Edit', edit_account_collection_path(collection) %> |
+    <%= link_to 'Destroy', account_collection_path(collection), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr> 
+<% end %>
+  </tbody>
+</table>
+

@@ -1,0 +1,8 @@
+<%= on_title t("auth.sn_login") %>
+
+<% form_for :user, :url => {:action => 'authenticate'} do |f| -%>
+  <p>Username:<br/><%= f.text_field :username, :size => 30 %> </p>
+  <p>Password:<br/><%= f.password_field :password, :size => 30 %> </p>
+  <br/><p><%= submit_tag 'Login' %> |
+  <%= link_to t('auth.forgotten_passwd'), :controller => 'account', :action=> 'retrieve' %></p>
+<% end %>
