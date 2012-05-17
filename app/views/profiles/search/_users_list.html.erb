@@ -6,10 +6,8 @@
 <table id="table-style-a">
   <thead>
     <tr>
-      <th></th>
-      <th>Username</th>
       <th>Fullname</th>
-      <% if logged_in_user %>
+      <% if current_user %>
       <th>Related friends</th>
       <th>Friendship</th>
       <% end %>
@@ -19,12 +17,10 @@
   <tbody>
     <% for user in @users %>
       <tr>
-        <td><%= avatar_for(user) %></td>
-        <td><%=h user.username.capitalize %></td>
         <td><%=h user.fullname %></td>
-        <% if logged_in_user %>
-          <td><%= logged_in_user.related_friends_count(user) unless logged_in_user.id == user.id %></td>
-          <td><%=  get_friendship(logged_in_user, user) %></td>
+        <% if current_user %>
+          <td><%= current_user.related_friends_count(user) unless current_user.id == user.id %></td>
+          <td><%=  get_friendship(current_user, user) %></td>
         <% end %>
         <td><%= link_to "Show", profile_url(user.id) %></td>
       </tr>

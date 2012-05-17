@@ -2,7 +2,7 @@
 <h3>New <%= params[:model]  %></h3><br/>
 <% form_for :entry, @entry, :url => {:action => "create", :model => params[:model]} do |f| %>
   <%= f.error_messages %>
-  <table id="table-style-a">
+  <table class="table-style-a">
   <thead>
     <tr>
       <th>Name</th>

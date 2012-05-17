@@ -4,7 +4,7 @@ class Accounts::MessagesController < MessagesController
   # GET /messages
   # GET /messages.xml
   def index
-    @inbox = logged_in_user.received_messages
+    @inbox = current_user.received_messages
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @messages }
@@ -12,7 +12,7 @@ class Accounts::MessagesController < MessagesController
   end
 
   def inbox
-    @inbox = logged_in_user.received_messages
+    @inbox = current_user.received_messages
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @messages }
@@ -20,7 +20,7 @@ class Accounts::MessagesController < MessagesController
   end
 
   def outbox
-    @outbox = logged_in_user.messages.unsent
+    @outbox = current_user.messages.unsent
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @messages }
@@ -28,7 +28,7 @@ class Accounts::MessagesController < MessagesController
   end
 
   def sent
-    @sent = logged_in_user.messages.sent
+    @sent = current_user.messages.sent
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @messages }
@@ -37,8 +37,8 @@ class Accounts::MessagesController < MessagesController
 
   def show
     @message = Message.find(params[:id])
-    @message.read!(logged_in_user) if
-      MessageRecipient.exists?(:user_id => logged_in_user.id, :message_id => @message.id)
+    @message.read!(current_user) if
+      MessageRecipient.exists?(:user_id => current_user.id, :message_id => @message.id)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @message }
@@ -61,12 +61,12 @@ class Accounts::MessagesController < MessagesController
     if params[:recipient_ids]
       recipients = User.find(params[:recipient_ids])
       for rec in recipients
-        @message.recipients << MessageRecipient.new({:user_id => rec.id, :message_id => @message.id, :read => :false, :parent_id => logged_in_user.id})
+        @message.recipients << MessageRecipient.new({:user_id => rec.id, :message_id => @message.id, :read => :false, :parent_id => current_user.id})
       end
     end
 
     respond_to do |format|
-      if logged_in_user.messages << @message
+      if current_user.messages << @message
         if params[:sendmethod] == "Instant"
           if @message.send_message!
             flash[:notice] = "Successfully sent..."
@@ -94,7 +94,7 @@ class Accounts::MessagesController < MessagesController
     @message = Message.find(params[:id])
     
     respond_to do |format|
-      if @message.user_id != logged_in_user.id || @message.status == "sent"
+      if @message.user_id != current_user.id || @message.status == "sent"
         flash[:error] = "You haven't got right to modify this resource..."
         format.html { redirect_to account_messages_path }
         format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }
@@ -122,7 +122,7 @@ class Accounts::MessagesController < MessagesController
     @message.recipients << MessageRecipient.new({:user_id => @original_message.user_id, :message_id => @message.id, :read => :false, :parent_id => @original_message.id})
 
     respond_to do |format|
-      if logged_in_user.messages << @message
+      if current_user.messages << @message
         if params[:sendmethod] == "Instant"
           if @message.send_message!
             flash[:notice] = "Successfully sent..."
@@ -148,8 +148,8 @@ class Accounts::MessagesController < MessagesController
   # DELETE /messages/1.xml
   def destroy
     @message = Message.find(params[:id])
-    if logged_in_user.received_messages.find(@message)
-      MessageRecipient.find_by_user_id_and_message_id(logged_in_user, @message.id).destroy
+    if current_user.received_messages.find(@message)
+      MessageRecipient.find_by_user_id_and_message_id(current_user, @message.id).destroy
 
     else
       @message.destroy

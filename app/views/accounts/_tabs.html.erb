@@ -1,8 +1,8 @@
-<% if logged_in_user.nil? %>
+<% if current_user.nil? %>
   <li><%= tab_yield t('auth.register'), new_account_url %></li>
   <li><%= tab_yield t('auth.login'), login_account_url %></li>
   <li><%= tab_yield t('auth.retrieve_passwd'), retrieve_account_url %></li>
-<% elsif !logged_in_user.nil? %>
+<% elsif !current_user.nil? %>
   <li><%= tab_yield "Activities", account_url %></li>
   <li><%= tab_yield "Messages", account_messages_url %></li>
   <li><%= tab_yield "Collections", account_collections_url %></li>

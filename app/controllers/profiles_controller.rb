@@ -23,7 +23,7 @@ class ProfilesController < ApplicationController
       @weblogs = @user.weblogs.public_weblogs
       @friends = @user.friends.latest_friends(10)
       @latest_posts = @user.posts.latest_posts(10)
-      @related_friends = logged_in_user.related_friends(@user) if logged_in_user
+      @related_friends = current_user.related_friends(@user) if current_user
       
     else
       flash[:error] = "No account associated with #{@username}..."

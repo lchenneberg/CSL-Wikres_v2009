@@ -3,9 +3,9 @@
 <div id="comments">
   <% for comment in comments %>
     <div class="comment" style="margin-bottom:10px; position:relative; border:1px solid #CCC; padding:5px">
-      <% if logged_in_user %>
+      <% if current_user %>
       <div style="position:absolute; right:2px; top:1px;">
-        <%= link_to_if logged_in_user.id == @post.user.id || logged_in_user.id == comment.user_id, "X",
+        <%= link_to_if current_user.id == @post.user.id || current_user.id == comment.user_id, "X",
           destroy_comment_profile_post_path(params[:user_id],params[:id], {:com => comment}), :method => :delete %>
       </div>
       <% end %>
@@ -18,7 +18,7 @@
   <% end %>
 </div>
 
-<% if logged_in_user %>
+<% if current_user %>
 <div id="new_comment">
 <%= on_title("New comment") %>
 <% remote_form_for :comment,

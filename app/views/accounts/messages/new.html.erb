@@ -5,7 +5,7 @@
   height:400px;background-color:#ffffff;overflow:auto;">
   <p><b>Receivers :</b></p>
   <ul>
-  <% for friend in logged_in_user.friends %>
+  <% for friend in current_user.friends %>
     <li><%= check_box_tag "recipient_ids[]", friend.id, @message.recipients.include?(friend.id) %> <%= "#{friend.fullname}" %></li>
   <% end %>
   <li><hr style="border: 1px dotted #eee; margin: 10px;" /></li>

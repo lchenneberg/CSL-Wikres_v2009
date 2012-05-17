@@ -49,7 +49,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        logged_in_user.posts << @post
+        current_user.posts << @post
         flash[:notice] = 'Post was successfully created.'
         format.html { redirect_to(@post) }
         format.xml  { render :xml => @post, :status => :created, :location => @post }
@@ -95,7 +95,7 @@ class PostsController < ApplicationController
     @comment = @post.comments.build(params[:comment])
 
     respond_to do |format|
-      if logged_in_user.comments << @comment
+      if current_user.comments << @comment
         flash[:notice] = 'Comment was successfully created.'
         #format.html { redirect_to :action => :show, :id => @comment.id }
         format.html { redirect_to profile_post_path(params[:user_id], @post) }
@@ -112,7 +112,7 @@ class PostsController < ApplicationController
   def destroy_comment
     @post = Post.find(params[:id])
     @comment = Comment.find(params[:com])
-    if logged_in_user.id == @post.user_id || logged_in_user.id == @comment.user_id
+    if current_user.id == @post.user_id || current_user.id == @comment.user_id
       @comment.destroy
       flash[:notice] = "Successfully destroyed..."
     else

@@ -3,7 +3,7 @@ class Accounts::PicturesController < PicturesController
   # GET /pictures
   # GET /pictures.xml
   def index
-    @pictures = logged_in_user.pictures
+    @pictures = current_user.pictures
 
     respond_to do |format|
       format.html # index.html.erb
@@ -43,7 +43,7 @@ class Accounts::PicturesController < PicturesController
   def create
     @picture = Picture.new(params[:picture])
     respond_to do |format|
-      if logged_in_user.pictures << @picture
+      if current_user.pictures << @picture
         flash[:notice] = 'Picture was successfully created.'
         format.html { redirect_to account_picture_url(@picture) }
         format.xml  { render :xml => @picture, :status => :created, :location => @picture }

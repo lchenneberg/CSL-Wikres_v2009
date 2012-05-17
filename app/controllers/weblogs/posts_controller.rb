@@ -16,7 +16,7 @@ class Weblogs::PostsController < PostsController
     respond_to do |format|
       @post = @parent.posts.build(params[:post])
       @post.weblog_id = @parent.id
-      if logged_in_user.posts << @post
+      if current_user.posts << @post
         flash[:notice] = 'Post was successfully created.'
         format.html { redirect_to :action => :show, :id => @post.id }
         format.xml  { render :xml => @post, :status => :created, :location => @post }
@@ -62,7 +62,7 @@ class Weblogs::PostsController < PostsController
     @comment = @post.comments.build(params[:comment])
 
     respond_to do |format|
-      if logged_in_user.comments << @comment
+      if current_user.comments << @comment
         flash[:notice] = 'Comment was successfully created.'
         #format.html { redirect_to :action => :show, :id => @comment.id }
         format.html { redirect_to :action => :show, :id => @post.id }
@@ -79,7 +79,7 @@ class Weblogs::PostsController < PostsController
   def destroy_comment
     @post = Post.find(params[:id])
     @comment = Comment.find(params[:com])
-    if logged_in_user.id == @post.user_id || logged_in_user.id == @comment.user_id
+    if current_user.id == @post.user_id || current_user.id == @comment.user_id
       @comment.destroy
       flash[:notice] = "Successfully destroyed..."
     else

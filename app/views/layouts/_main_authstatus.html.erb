@@ -1,8 +1,8 @@
 <% if is_logged_in? %>
   <div id="loginStatus">
-    <div id="ls_image"><%= avatar_for(logged_in_user) %></div>
+    <div id="ls_image"><%= avatar_for(current_user) %></div>
     <div id="ls_infos">
-        <span id="ls_username" ><%= link_to logged_in_user.username, user_url(logged_in_user.id) %></span><br/>
+        <span id="ls_username" ><%= link_to current_user.username, user_url(current_user.id) %></span><br/>
         <span id="ls_fullname">Ludovic CHENNEBERG</span><br/>
         <span id="ls_links"><%= link_to "My account", account_path %> | 
           <%= link_to t('auth.logout'), logout_account_url, :method => :post %></span>

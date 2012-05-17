@@ -9,7 +9,7 @@ class PostCommentsController < CommentsController
     @comment = @post.comments.build(params[:comment])
 
     respond_to do |format|
-      if logged_in_user.comments << @comment
+      if current_user.comments << @comment
         flash[:notice] = 'Comment was successfully created.'
         #format.html { redirect_to :action => :show, :id => @comment.id }
         format.html { redirect_to :action => :index }

@@ -20,7 +20,7 @@
     <td><%= link_to message.subject, account_message_path(message) %></td>
     <td><%= avatar_for(message.user) %></td>
     <td><%= link_to message.user.fullname, profile_url(message.user)  %></td>
-    <td><%= check_box_tag "read", "", message.read?(logged_in_user) ,:disabled => true %></td>
+    <td><%= check_box_tag "read", "", message.read?(current_user) ,:disabled => true %></td>
     <td><%=h message.sent_at.to_s(:long) %></td>
     <td><%=h message.type %></td>
     <td><%= link_to 'Read', account_message_path(message) %> |

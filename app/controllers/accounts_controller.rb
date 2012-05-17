@@ -6,7 +6,7 @@ class AccountsController < ApplicationController
   end
 
   def show
-    @user = logged_in_user
+    @user = current_user
   end
 
   def new
@@ -38,7 +38,7 @@ class AccountsController < ApplicationController
   end
 
   def authenticate
-    self.logged_in_user = User.authenticate(params[:user][:username], params[:user][:password])
+    self.current_user = User.authenticate(params[:user][:username], params[:user][:password])
     if is_logged_in?
       redirect_back_or_default(account_url)
     else
@@ -83,12 +83,12 @@ class AccountsController < ApplicationController
   end
 
   def profile
-    @user = logged_in_user
+    @user = current_user
     @skills = Skill.find(:all)
   end
 
   def profile_update
-    @user = logged_in_user
+    @user = current_user
     @skills = Skill.find(:all)
     @user.skills = Skill.find(params[:skill_ids]) if params[:skill_ids]
     respond_to do |format|
@@ -105,13 +105,13 @@ class AccountsController < ApplicationController
 
   def set_avatar
     pict = Picture.find(params[:pict])
-    logged_in_user.set_avatar(pict)
+    current_user.set_avatar(pict)
     flash[:notice] = "Avatar successfully updated..."
     redirect_to :back
   end
 
   def unset_avatar
-    logged_in_user.lease
+    current_user.lease
     redirect_to :back
   end
 

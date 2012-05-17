@@ -11,7 +11,7 @@ module WsAuthentication
   protected
 
   def self.included(base)
-    base.send :helper_method, :is_logged_in?, :logged_in_user, :is_admin?
+    base.send :helper_method, :is_logged_in?, :current_user, :is_admin?
     
   end
 
@@ -25,7 +25,7 @@ module WsAuthentication
 
   def authorized?(user_id)
     is_logged_in?
-    if user_id != logged_in_user.id || is_logged_in_admin? == false
+    if user_id != current_user.id || is_logged_in_admin? == false
       flash[:error] = t('auth.flash.deny_access')
     end
   end
@@ -49,28 +49,28 @@ module WsAuthentication
 
   def is_logged_in?
     username, password = get_http_auth_data
-    @logged_in_user = User.find(session[:user]) if session[:user]
-    @logged_in_user = User.authenticate(username, password) if username && password
-    @logged_in_user ? @logged_in_user : false
+    @current_user = User.find(session[:user]) if session[:user]
+    @current_user = User.authenticate(username, password) if username && password
+    @current_user ? @current_user : false
   end
 
-  def is_logged_in_user_has_role?(rolename)
-    unless logged_in_user
+  def is_current_user_has_role?(rolename)
+    unless current_user
       false
     else
-      logged_in_user.roles.find_by_name(rolename) ? true : false
+      current_user.roles.find_by_name(rolename) ? true : false
     end
   end
 
-  def logged_in_user
-    return @logged_in_user if is_logged_in?
+  def current_user
+    return @current_user if is_logged_in?
   end
-  alias_method :current_user, :logged_in_user
+  alias_method :current_user, :current_user
 
-  def logged_in_user=(user)
+  def current_user=(user)
     if !user.nil?
       session[:user] = user.id
-      @logged_in_user = user
+      @current_user = user
       user.update_attribute(:last_login, Time.now)
     end
   end
@@ -87,7 +87,7 @@ module WsAuthentication
           headers['WWW-Authenticate'] = %(Basic realm="Password")
           render :text => "Insuffient permission", :status => '401 Unauthorized', :layout => false
         end
-      end unless is_logged_in? && @logged_in_user.has_role?(role)
+      end unless is_logged_in? && @current_user.has_role?(role)
   end
 
   def check_administrator_role

@@ -11,7 +11,7 @@
 
   <tbody>
 
-  <% unless @user.requested_friends.empty? or logged_in_user.id != @user.id %>
+  <% unless @user.requested_friends.empty? or current_user.id != @user.id %>
     <tr>
       <td colspan="5" class="spec">Requests ( <%= @user.requested_friends.count %> )</td>
     </tr>
@@ -21,7 +21,7 @@
         <td><%= avatar_for requester %></td>
         <td><%= link_to requester.fullname, profile_path(requester) %></td>
         <td><%= link_to requester.username.capitalize, profile_path(requester) %></td>
-        <td><%= logged_in_user.related_friends_count(requester) %></td>
+        <td><%= current_user.related_friends_count(requester) %></td>
         <td>
           <%= link_to "Accept", :controller => :friendships, :action => :accept,
               :id => requester.username %> |
@@ -42,9 +42,9 @@
       <td width="50"><%= avatar_for friend %></td>
       <td><%= link_to friend.fullname, profile_path(friend) %></td>
       <td><%= link_to friend.username.capitalize, profile_path(friend) %></td>
-      <td><%= logged_in_user.related_friends_count(friend) %></td>
+      <td><%= current_user.related_friends_count(friend) %></td>
       <td>
-        <% if logged_in_user.id == @user.id %>
+        <% if current_user.id == @user.id %>
             <%= link_to "Break", {:controller => :friendships, :action => :delete, :id => friend.username},
                 :confirm => "Are you sure?" %>
         <% end %>
@@ -53,7 +53,7 @@
   <% end %>
 
 
-  <% unless @user.pending_friends.empty? or logged_in_user.id != @user.id %>
+  <% unless @user.pending_friends.empty? or current_user.id != @user.id %>
 
     <tr>
       <td colspan="5" class="spec">Pending friends ( <%= @user.pending_friends.count %> )</td>
@@ -64,7 +64,7 @@
         <td><%= avatar_for pending_friend %></td>
         <td><%= link_to pending_friend.fullname, profile_path(pending_friend) %></td>
         <td><%= link_to pending_friend.username.capitalize, profile_path(pending_friend) %></td>
-        <td><%= logged_in_user.related_friends_count(pending_friend) %></td>
+        <td><%= current_user.related_friends_count(pending_friend) %></td>
         <td>
           <%= link_to "Cancel request", { :controller => :friendships, :action => :cancel,
                 :id => pending_friend.username } , :confirm => "Are you sure?" %>

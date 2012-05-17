@@ -43,7 +43,7 @@ class MessagesController < ApplicationController
   # POST /messages.xml
   def create
     @message = Message.new(params[:message])
-    @message.user_id = logged_in_user.id
+    @message.user_id = current_user.id
     respond_to do |format|
       if @message.save
         flash[:notice] = 'Message was successfully created.'

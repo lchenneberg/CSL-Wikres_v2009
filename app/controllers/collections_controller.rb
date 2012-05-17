@@ -6,7 +6,7 @@ class CollectionsController < ApplicationController
   # GET /collections.xml
   def index
     #@collections = Collection.all
-    @collections = Collection.find_all_by_user_id logged_in_user.id
+    @collections = Collection.find_all_by_user_id current_user.id
 
     respond_to do |format|
       format.html # index.html.erb
@@ -47,7 +47,7 @@ class CollectionsController < ApplicationController
     @collection = Collection.new(params[:collection])
 
     respond_to do |format|
-      if @collection.save && logged_in_user.collections << @collection
+      if @collection.save && current_user.collections << @collection
         flash[:notice] = 'Collection was successfully created.'
         format.html { redirect_to account_collection_url(@collection) }
         format.xml  { render :xml => @collection, :status => :created, :location => @collection }

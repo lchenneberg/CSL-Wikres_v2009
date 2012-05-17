@@ -73,7 +73,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update_attributes(params[:user])
         flash[:notice] = t('account.flash.update_success')
-        format.html { redirect_to :action => 'show', :id => logged_in_user }
+        format.html { redirect_to :action => 'show', :id => current_user }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

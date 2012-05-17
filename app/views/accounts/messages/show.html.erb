@@ -28,5 +28,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_account_message_path(@message) if logged_in_user.id == @message.user_id && @message == "sent" %> |
+<%= link_to 'Edit', edit_account_message_path(@message) if current_user.id == @message.user_id && @message == "sent" %> |
 <%= link_to 'Back', account_messages_path %>

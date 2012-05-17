@@ -3,7 +3,7 @@ class WeblogsController < ApplicationController
   # GET /weblogs
   # GET /weblogs.xml
   def index
-      @current_user = logged_in_user;
+      @current_user = current_user;
       @weblogs = @current_user.weblogs
     respond_to do |format|
       format.html # index.html.erb
@@ -45,7 +45,7 @@ class WeblogsController < ApplicationController
     @weblog = Weblog.new(params[:weblog])
 
     respond_to do |format|
-      if logged_in_user.weblogs << @weblog
+      if current_user.weblogs << @weblog
         flash[:notice] = 'Weblog was successfully created.'
         format.html { redirect_to account_weblog_url(@weblog) }
         format.xml  { render :xml => @weblog, :status => :created, :location => @weblog }
@@ -86,12 +86,12 @@ class WeblogsController < ApplicationController
   end
 
   def enable
-    if !logged_in_user.weblog.nil?
+    if !current_user.weblog.nil?
       flash[:notice] = "Weblog is already enabled."
     else
-      logged_in_user.weblog = Weblog.new
+      current_user.weblog = Weblog.new
       flash[:notice] = "Weblog was successfully created."
     end
-    redirect_to manage_user_url(logged_in_user.id)
+    redirect_to manage_user_url(current_user.id)
   end
 end

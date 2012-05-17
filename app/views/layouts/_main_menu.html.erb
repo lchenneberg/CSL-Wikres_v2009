@@ -2,7 +2,7 @@
 
 <li><%= link_to t('menu.profiles.section'), profiles_url %></li>
 
-<% if logged_in_user and logged_in_user.has_role?('administrator') %>
+<% if current_user and current_user.has_role?('administrator') %>
   <li><%= link_to t('menu.admin.section'), admin_url %><ul>
       <li><%= link_to 'Admin Users', users_path %></li>
   </ul></li>
@@ -12,7 +12,7 @@
   <li><%= link_to t('menu.account.section'), account_path %><ul>
   <li><%= link_to t('menu.account.profile'), profile_account_path %></li>
   <li><%= link_to t('menu.account.message'), account_messages_path %></li>
-  <li><%= link_to t('menu.account.update_account'), edit_user_path(logged_in_user) %></li>
+  <li><%= link_to t('menu.account.update_account'), edit_user_path(current_user) %></li>
   <li><%= link_to t("menu.account.collections"), account_collections_path %></li>
   <li><%= link_to t('menu.account.user_weblog'), account_weblogs_path %></li>
 </ul></li>
